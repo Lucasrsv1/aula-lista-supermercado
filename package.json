@@ -1,0 +1,24 @@
+{
+	"name": "aula-lista-supermercado",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon index.js",
+		"db_create": "sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all",
+		"db_drop": "sequelize-cli db:drop",
+		"db_migrate": "sequelize-cli db:migrate",
+		"db_seed": "sequelize-cli db:seed --seed"
+	},
+	"author": "TCS Industrial",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"pg": "^8.6.0",
+		"sequelize": "^6.6.5"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.12",
+		"sequelize-cli": "^6.2.0"
+	}
+}
