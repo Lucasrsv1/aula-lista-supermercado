@@ -1,43 +1,34 @@
 const { Model } = require("sequelize");
 
-class Itens extends Model {
+class Usuarios extends Model {
 	/**
 	 * Cria as associações entre as tabelas do banco de dados
 	 * @param {import("./index")} models Modelos das tabelas do banco de dados
 	 */
 	static associate (models) {
-		models.Itens.belongsTo(models.Usuarios, { as: "usuario", foreignKey: "idUsuario" });
+		models.Usuarios.hasMany(models.Itens, { as: "itens", foreignKey: "idUsuario" });
 	}
 }
 
 /**
- * Cria o modelo da tabela itens
+ * Cria o modelo da tabela usuarios
  * @param {import("sequelize/types").Sequelize} sequelize
  * @param {import("sequelize/types").DataTypes} DataTypes
  */
-function initItens (sequelize, DataTypes) {
-	Itens.init({
+function initUsuarios (sequelize, DataTypes) {
+	Usuarios.init({
 		id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		},
-		descricao: {
-			type: DataTypes.STRING,
+		usuario: {
+			type: DataTypes.STRING(128),
 			allowNull: false
 		},
-		quantidade: {
-			type: DataTypes.FLOAT,
-			allowNull: false
-		},
-		estaNoCarrinho: {
-			type: DataTypes.BOOLEAN,
-			allowNull: false,
-			defaultValue: false
-		},
-		idUsuario: {
-			type: DataTypes.INTEGER,
+		senha: {
+			type: DataTypes.STRING(256),
 			allowNull: false
 		}
 	}, {
@@ -45,11 +36,11 @@ function initItens (sequelize, DataTypes) {
 		paranoid: true,
 		timestamps: true,
 		underscored: true,
-		modelName: "Itens",
-		tableName: "itens"
+		modelName: "Usuarios",
+		tableName: "usuarios"
 	});
 
-	return Itens;
+	return Usuarios;
 }
 
-module.exports = initItens;
+module.exports = initUsuarios;

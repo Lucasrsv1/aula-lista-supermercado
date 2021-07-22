@@ -1,8 +1,8 @@
 "use strict";
 
-const itensIniciais = [
-	{ descricao: "Sabonete", quantidade: 5 },
-	{ descricao: "Biscoito", quantidade: 2 }
+const usuarios = [
+	{ id: 1, usuario: "teste", senha: "123456" },
+	{ id: 2, usuario: "teste2", senha: "123456" }
 ];
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
 	 * @param {import("sequelize/types").Sequelize} Sequelize
 	 */
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkInsert("itens", itensIniciais);
+		await queryInterface.bulkInsert("usuarios", usuarios);
 	},
 
 	/**
@@ -21,8 +21,6 @@ module.exports = {
 	 * @param {import("sequelize/types").DataTypes} Sequelize
 	 */
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.bulkDelete("itens", {
-			[Sequelize.Op.or]: itensIniciais
-		});
+		await queryInterface.bulkDelete("usuarios", { id: usuarios.map(u => u.id) });
 	}
 };

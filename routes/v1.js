@@ -4,9 +4,9 @@ const { obtemLista, adicionaItem, atualizarCarrinho, removerItem } = require("..
 
 const roteador = express.Router();
 
-roteador.get("/obtemLista", obtemLista);
+roteador.get("/obtemLista/:idUsuario", obtemLista);
 
-roteador.post("/adicionaItem", adicionaItem);
+roteador.post("/adicionaItem/:idUsuario", adicionaItem);
 
 roteador.patch("/atualizarCarrinho/:idItem", atualizarCarrinho);
 

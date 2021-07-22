@@ -3,6 +3,7 @@
 const Sequelize = require("sequelize");
 
 const initItens = require("./itens");
+const initUsuarios = require("./usuarios");
 
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -16,9 +17,11 @@ else
 const db = {
 	sequelize,
 	Sequelize,
-	Itens: initItens(sequelize, Sequelize.DataTypes)
+	Itens: initItens(sequelize, Sequelize.DataTypes),
+	Usuarios: initUsuarios(sequelize, Sequelize.DataTypes)
 };
 
 db.Itens.associate(db);
+db.Usuarios.associate(db);
 
 module.exports = db;

@@ -1,0 +1,29 @@
+// =========================================================================
+// Esquema do banco de dados para a aula de desenvolvimento de software.
+// Para visualiza-lo acesse https://dbdiagram.io/d/60f89e294ed9be1c05d70715
+// =========================================================================
+
+Project lista_supermercado {
+  database_type: 'PostgreSQL'
+  Note: 'Aplicativo para fazer uma lista de supermercado'
+}
+
+Table usuarios {
+  id int [primary key, increment, not null]
+  usuario varchar(128) [not null]
+  senha varchar(256) [not null]
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp [not null, default: `now()`]
+  deleted_at timestamp [null]
+}
+
+Table itens {
+  id int [primary key, increment, not null]
+  descricao varchar(256) [not null]
+  quantidade float [not null]
+  esta_no_carrinho boolean [not null, default: `false`]
+  id_usuario int [not null, ref: > usuarios.id]
+  created_at timestamp [not null, default: `now()`]
+  updated_at timestamp [not null, default: `now()`]
+  deleted_at timestamp [null]
+}

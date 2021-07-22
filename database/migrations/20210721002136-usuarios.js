@@ -7,25 +7,20 @@ module.exports = {
 	 * @param {import("sequelize/types").DataTypes} Sequelize
 	 */
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("itens", {
+		await queryInterface.createTable("usuarios", {
 			id: {
 				type: Sequelize.INTEGER,
-				allowNull: false,
+				primaryKey: true,
 				autoIncrement: true,
-				primaryKey: true
-			},
-			descricao: {
-				type: Sequelize.STRING,
 				allowNull: false
 			},
-			quantidade: {
-				type: Sequelize.FLOAT,
-				allowNull: null
+			usuario: {
+				type: Sequelize.STRING(128),
+				allowNull: false
 			},
-			esta_no_carrinho: {
-				type: Sequelize.BOOLEAN,
-				allowNull: false,
-				defaultValue: false
+			senha: {
+				type: Sequelize.STRING(256),
+				allowNull: false
 			},
 			created_at: {
 				type: Sequelize.DATE,
@@ -50,6 +45,6 @@ module.exports = {
 	 * @param {import("sequelize/types").Sequelize} Sequelize
 	 */
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("itens");
+		await queryInterface.dropTable("usuarios");
 	}
 };

@@ -9,7 +9,10 @@ async function obtemLista (req, res) {
 	try {
 		const itens = await models.Itens.findAll({
 			attributes: ["id", "descricao", "quantidade", "estaNoCarrinho"],
-			order: [["descricao", "ASC"]]
+			order: [["descricao", "ASC"]],
+			where: {
+				idUsuario: parseInt(req.params.idUsuario)
+			}
 		});
 		res.status(200).json(itens);
 	} catch (error) {
@@ -30,7 +33,8 @@ async function adicionaItem (req, res) {
 	try {
 		const item = await models.Itens.create({
 			descricao: req.body.descricao,
-			quantidade: req.body.quantidade
+			quantidade: req.body.quantidade,
+			idUsuario: parseInt(req.params.idUsuario)
 		});
 
 		res.status(201).json(item);
