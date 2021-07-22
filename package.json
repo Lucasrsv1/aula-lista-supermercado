@@ -1,7 +1,7 @@
 {
 	"name": "aula-lista-supermercado",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Aplicativo para fazer uma lista de supermercado",
 	"main": "index.js",
 	"scripts": {
 		"start": "nodemon index.js",
